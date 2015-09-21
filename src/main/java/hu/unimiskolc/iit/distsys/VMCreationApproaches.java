@@ -31,4 +31,5 @@ public interface VMCreationApproaches {
 	public void indirectVMCreation() throws Exception;
 
 	public void migratedVMCreation() throws Exception;
+
 }

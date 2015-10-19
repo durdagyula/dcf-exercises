@@ -39,7 +39,7 @@ import hu.mta.sztaki.lpds.cloud.simulator.iaas.constraints.AlterableResourceCons
 import hu.unimiskolc.iit.distsys.interfaces.FillInAllPMs;
 
 public class TestRoundRobinJobSched {
-	@Test(timeout = 10000)
+	@Test//(timeout = 10000)
 	public void testRRWithPMFiller() throws Exception {
 		final int requestedVMcount = 100;
 		// Preparing the IaaS
@@ -49,7 +49,7 @@ public class TestRoundRobinJobSched {
 		Assert.assertEquals("Should have all PMs running as all should be occupied with VMs", myIaaS.machines.size(),
 				myIaaS.runningMachines.size());
 		for (PhysicalMachine pm : myIaaS.machines) {
-			Assert.assertEquals("No PM should have free CPUs", 0, pm.freeCapacities.getRequiredCPUs(), 0.00000001);
+			Assert.assertEquals("Every CPU of every PM should be allocated to some VMs", 0, pm.freeCapacities.getRequiredCPUs(), 0.00000001);
 		}
 		final Collection<VirtualMachine> vms = myIaaS.listVMs();
 		Assert.assertEquals("Should have exactly the specified number of VMs on the IaaS", requestedVMcount,
@@ -108,7 +108,7 @@ public class TestRoundRobinJobSched {
 		
 		//doing the actual simulation
 		Timed.simulateUntilLastEvent();
-
+		
 		// post runtime checks
 		for (final Job j : jobs) {
 			Assert.assertTrue("One of the jobs did not get started", j.getRealqueueTime() > 0);

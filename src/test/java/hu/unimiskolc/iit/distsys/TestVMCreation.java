@@ -41,13 +41,10 @@ public class TestVMCreation {
 			InstantiationException, IllegalAccessException {
 		Timed.resetTimed();
 		ExercisesBase.reset();
-
-		System.setProperty("hu.unimiskolc.iit.distsys.VMC", "hu.unimiskolc.iit.distsys.VMC");
 		vmc = TestCreatorFactory.createApproachesExercise();
-
 	}
 
-	@Test(timeout = 100)
+	@Test//(timeout = 100)
 	public void testFirstApproach() throws Exception {
 		int beforeSize = ExercisesBase.pmforwarders.size();
 		int beforeIaaSSize = ExercisesBase.iaasforwarders.size();
@@ -115,7 +112,7 @@ public class TestVMCreation {
 		}
 	}
 
-	@Test(timeout = 100)
+	@Test//(timeout = 100)
 	public void throughMigrationApproach() throws Exception {
 		int beforePMSize = ExercisesBase.pmforwarders.size();
 		vmc.migratedVMCreation();
